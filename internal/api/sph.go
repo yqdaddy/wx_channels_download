@@ -276,9 +276,9 @@ func (c *APIClient) handleParseSph(ctx *gin.Context) {
 		return
 	}
 
-	// 处理 video URL：仅保留 encfilekey 和 token 参数，存储为 originVideoUrl
+	// 直接使用完整视频 URL，保留 sign、hy、idx 等关键签名参数
 	if feedResp != nil && feedResp.Data.Feedinfo.Videourl != "" {
-		feedResp.Data.Feedinfo.OriginVideoUrl = cleanVideoURL(feedResp.Data.Feedinfo.Videourl)
+		feedResp.Data.Feedinfo.OriginVideoUrl = feedResp.Data.Feedinfo.Videourl
 	}
 
 	result.Ok(ctx, feedResp)
@@ -297,4 +297,9 @@ func cleanVideoURL(videoURL string) string {
 		return newURL
 	}
 	return ""
+}
+
+func (c *APIClient) handleSphPage(ctx *gin.Context) {
+	ctx.Header("Content-Type", "text/html; charset=utf-8")
+	ctx.File("internal/api/ui/sph.html")
 }

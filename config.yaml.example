@@ -1,0 +1,7 @@
+# 云效视频号下载助手 - 配置示例
+# 复制此文件为 config.yaml 并填入真实值
+
+# 腾讯元宝 Cookie（用于通过分享链接解析视频号视频信息）
+# 获取方法：浏览器登录 https://yuanbao.tencent.com → F12 → Application → Cookies → 复制 hy_source、hy_user、hy_token
+cloudflare:
+  sphCookie: "hy_source=web; hy_user=your_user_id; hy_token=your_token"
